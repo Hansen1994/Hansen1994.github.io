@@ -2,7 +2,10 @@
 
 $(document).ready(function () {
   initScrollSpy();
-
+  // 中文名字编码错误
+  $("a.nav-link").each(function (i, item) {
+    item.setAttribute("href", decodeURIComponent(item.getAttribute("href")));
+  });
   function initScrollSpy() {
     var tocSelector = ".post-toc";
     var $tocElement = $(tocSelector);
@@ -85,7 +88,8 @@ $(document).ready(function () {
   $(".post-toc a").on("click", function (e) {
     e.preventDefault();
     var targetSelector = NexT.utils.escapeSelector(this.getAttribute("href"));
-    targetSelector = decodeURI(this.getAttribute("href"));
+    targetSelector = decodeURIComponent(this.getAttribute("href"));
+    this.setAttribute("href", targetSelector);
     var offset = $(targetSelector).offset().top;
 
     hasVelocity
