@@ -13,8 +13,8 @@ $(document).ready(function () {
 
     $tocElement
       .on("activate.bs.scrollspy", function () {
+        // 获取.active 最后哪个元素
         var $currentActiveElement = $(tocSelector + " .active").last();
-
         removeCurrentActiveClass();
         $currentActiveElement.addClass("active-current");
 
@@ -88,8 +88,6 @@ $(document).ready(function () {
   $(".post-toc a").on("click", function (e) {
     e.preventDefault();
     var targetSelector = NexT.utils.escapeSelector(this.getAttribute("href"));
-    targetSelector = decodeURIComponent(this.getAttribute("href"));
-    this.setAttribute("href", targetSelector);
     var offset = $(targetSelector).offset().top;
 
     hasVelocity
